@@ -26,8 +26,7 @@ def setup():
     nums.clear()
     for i in range(600):
         nums.append(i)
-    #shuffle the list to randomize it, otherwise... whats the point of sorting it?
-    #shuffle(nums)
+    shuffle(nums)
 
 def update():
     for num in nums:
@@ -126,12 +125,12 @@ for num in nums:
 pygame.display.update()
 #screen.fill(0)
 
-setup()
-quickSort(nums, 0, len(nums)-1)
+# setup()
+# quickSort(nums, 0, len(nums)-1)
 setup()
 bubbleSort(nums)
-setup()
-shellSort(nums)
+# setup()
+# shellSort(nums)
 
 running = True
 while running:
