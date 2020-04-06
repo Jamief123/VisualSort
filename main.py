@@ -10,13 +10,12 @@ BLUE = (0, 0, 255)
 # initialize pygame
 width = 600
 height = 600
-margin = 5
 pygame.init()
 screen_size = (width, height)
 
 # create a window
 screen = pygame.display.set_mode(screen_size)
-pygame.display.set_caption("Pygame Playground")
+pygame.display.set_caption("VisualSort")
 
 # clock is used to set a max fps
 clock = pygame.time.Clock()
