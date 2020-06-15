@@ -19,8 +19,8 @@ pygame.init()
 screen_size = (width, height)
 
 # create a window
-screen = pygame.display.set_mode(screen_size)
-pygame.display.set_caption("VisualSort")
+screen = None
+
 
 # clock is used to set a max fps
 clock = pygame.time.Clock()
@@ -28,6 +28,10 @@ nums = []
 
 
 def setup():
+    # Draw the screen
+    pygame.display.set_mode(screen_size)
+    pygame.display.set_caption("VisualSort")
+
     # Draw initial rectangles
     for num in nums:
         pygame.draw.rect(screen, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
