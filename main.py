@@ -1,5 +1,7 @@
-import pygame, time
+import pygame
+import time
 from random import randint, seed, shuffle
+
 seed(1)
 
 WHITE = (255, 255, 255)
@@ -20,18 +22,22 @@ pygame.display.set_caption("VisualSort")
 # clock is used to set a max fps
 clock = pygame.time.Clock()
 nums = []
+
+
 def setup():
-    #Clear the numList so it does not stack every time this function is called
+    # Clear the numList so it does not stack every time this function is called
     nums.clear()
     for i in range(600):
         nums.append(i)
     shuffle(nums)
+
 
 def update():
     for num in nums:
         pygame.draw.rect(screen, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
     pygame.display.update()
     screen.fill(0)
+
 
 def swap(i, j):
     pygame.draw.rect(screen, BLACK, [nums.index(nums[i]), height, 2, 0 - height], 0)
@@ -40,7 +46,8 @@ def swap(i, j):
     pygame.draw.rect(screen, WHITE, [nums.index(nums[j]), height, 2, 0 - nums[j]], 0)
     pygame.display.update()
 
-def shellSort(input_list):
+
+def shell_sort(input_list):
     gap = len(input_list) // 2
     while gap > 0:
 
@@ -60,7 +67,7 @@ def shellSort(input_list):
         gap = gap // 2
 
 
-def bubbleSort(arr):
+def bubble_sort(arr):
     n = len(arr)
 
     # Traverse through all array elements
@@ -74,9 +81,10 @@ def bubbleSort(arr):
             # than the next element
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                swap(j, j+1) #this swap method updates the screen and has nothing to do with the algorithm
+                swap(j, j + 1)  # this swap method updates the screen and has nothing to do with the algorithm
 
-#==============================QUICK SORT=============================================#
+
+# ==============================QUICK SORT=============================================#
 
 # This function takes last element as pivot, places
 # the pivot element at its correct position in sorted
@@ -100,13 +108,14 @@ def partition(arr, low, high):
     update()
     return (i + 1)
 
+
 # The main function that implements QuickSort
 # arr[] --> Array to be sorted,
 # low  --> Starting index,
 # high  --> Ending index
 
 # Function to do Quick sort
-def quickSort(arr, low, high):
+def quick_sort(arr, low, high):
     if low < high:
         # pi is partitioning index, arr[p] is now
         # at right place
@@ -114,20 +123,21 @@ def quickSort(arr, low, high):
 
         # Separately sort elements before
         # partition and after partition
-        quickSort(arr, low, pi - 1)
-        quickSort(arr, pi + 1, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
 
-#====================================== END QUICK SORT==========================================#
+
+# ====================================== END QUICK SORT==========================================#
 
 for num in nums:
     pygame.draw.rect(screen, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
 pygame.display.update()
-#screen.fill(0)
+# screen.fill(0)
 
 # setup()
 # quickSort(nums, 0, len(nums)-1)
 setup()
-bubbleSort(nums)
+bubble_sort(nums)
 # setup()
 # shellSort(nums)
 
