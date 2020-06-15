@@ -1,6 +1,9 @@
 import pygame
+import const
+import sys
 import time
 from random import randint, seed, shuffle
+from arg_parse import ArgParse
 
 seed(1)
 
@@ -25,6 +28,12 @@ nums = []
 
 
 def setup():
+    # Draw initial rectangles
+    for num in nums:
+        pygame.draw.rect(screen, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
+    pygame.display.update()
+    # screen.fill(0)
+
     # Clear the numList so it does not stack every time this function is called
     nums.clear()
     for i in range(600):
@@ -129,24 +138,34 @@ def quick_sort(arr, low, high):
 
 # ====================================== END QUICK SORT==========================================#
 
-for num in nums:
-    pygame.draw.rect(screen, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
-pygame.display.update()
-# screen.fill(0)
 
-# setup()
-# quickSort(nums, 0, len(nums)-1)
-setup()
-bubble_sort(nums)
-# setup()
-# shellSort(nums)
+def main():
+    running = True
+    parser = ArgParse()
+    parser.parse_args()
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    if const.QUICKSORT:
+        setup()
+        quick_sort(nums, 0, len(nums)-1)
+    elif const.BUBBLESORT:
+        setup()
+        bubble_sort(nums)
+    elif const.SHELLSORT:
+        setup()
+        shell_sort(nums)
+    else:
+        parser.print_usage()
+        running = False
+        print('No option Selected. Select an algorithm')
 
-    clock.tick(60)
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
-pygame.quit()
+        clock.tick(60)
+
+    pygame.quit()
+
+if __name__ == '__main__':
+    main()
