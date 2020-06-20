@@ -13,8 +13,6 @@ class ArgParse:
         self.parser.add_argument('-b', help='Bubblesort', action='store_true')
         self.parser.add_argument('-s', help='Shellsort', action='store_true')
         self.args = self.parser.parse_args()
-        print(self.args)
-
 
     def parse_args(self):
         if self.args.q:

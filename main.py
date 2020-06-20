@@ -1,6 +1,7 @@
 import pygame
 import const
 import sys
+import threading
 import time
 from random import randint, seed, shuffle
 from arg_parse import ArgParse
@@ -142,27 +143,34 @@ def quick_sort(arr, low, high):
 
 def main():
     running = True
+    thread = None
     parser = ArgParse()
     parser.parse_args()
 
+    setup()
+
     if const.QUICKSORT:
-        setup()
-        quick_sort(nums, 0, len(nums)-1)
+        thread = threading.Thread(target=quick_sort, args=((nums, 0, len(nums)-1)),)
     elif const.BUBBLESORT:
-        setup()
-        bubble_sort(nums)
+        thread = threading.Thread(target=bubble_sort, args=(nums,))
     elif const.SHELLSORT:
-        setup()
-        shell_sort(nums)
+        thread = threading.Thread(target=shell_sort, args=(nums,))
     else:
         parser.print_usage()
         running = False
         print('No option Selected. Select an algorithm')
 
+    thread.start()
+
     while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+
+        try:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+        except(KeyboardInterrupt, SystemExit):
                 running = False
+                sys.exit()
 
         clock.tick(60)
 
