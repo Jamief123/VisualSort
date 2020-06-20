@@ -50,6 +50,7 @@ def update():
     const.SCREEN.fill(0)
 
 
+#used for bubblesort
 def swap(i, j):
     pygame.draw.rect(const.SCREEN, BLACK, [nums.index(nums[i]), height, 2, 0 - height], 0)
     pygame.draw.rect(const.SCREEN, BLACK, [nums.index(nums[j]), height, 2, 0 - height], 0)
@@ -140,6 +141,23 @@ def quick_sort(arr, low, high):
 
 # ====================================== END QUICK SORT==========================================#
 
+# Function to do insertion sort
+def insertion_sort(arr):
+    # Traverse through 1 to len(arr)
+    for i in range(1, len(arr)):
+
+        key = arr[i]
+
+        # Move elements of arr[0..i-1], that are
+        # greater than key, to one position ahead
+        # of their current position
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+        update()
+
 
 def main():
     running = True
@@ -155,6 +173,8 @@ def main():
         thread = threading.Thread(target=bubble_sort, args=(nums,))
     elif const.SHELLSORT:
         thread = threading.Thread(target=shell_sort, args=(nums,))
+    elif const.INSERTIONSORT:
+        thread = threading.Thread(target=insertion_sort, args=(nums,))
     else:
         parser.print_usage()
         running = False

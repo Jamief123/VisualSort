@@ -12,6 +12,7 @@ class ArgParse:
         self.parser.add_argument('-q', help='Quicksort', action='store_true')
         self.parser.add_argument('-b', help='Bubblesort', action='store_true')
         self.parser.add_argument('-s', help='Shellsort', action='store_true')
+        self.parser.add_argument('-i', help='Insertionsort', action='store_true')
         self.args = self.parser.parse_args()
 
     def parse_args(self):
@@ -21,6 +22,8 @@ class ArgParse:
             const.BUBBLESORT = True
         elif self.args.s:
             const.SHELLSORT = True
+        elif self.args.i:
+            const.INSERTIONSORT = True
 
     def print_usage(self):
         self.parser.print_help()
