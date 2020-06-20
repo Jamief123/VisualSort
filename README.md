@@ -6,3 +6,7 @@ This is just a quick and dirty implementation with further optimizations and alg
 GIF bubblesort example
 
 ![](images/sort.gif)
+
+**Support for command line arguments to choose which algorithm to visualize**
+
+![](images/cl_args.png)
