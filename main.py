@@ -18,9 +18,6 @@ height = 600
 pygame.init()
 screen_size = (width, height)
 
-# create a window
-screen = None
-
 
 # clock is used to set a max fps
 clock = pygame.time.Clock()
@@ -29,12 +26,12 @@ nums = []
 
 def setup():
     # Draw the screen
-    pygame.display.set_mode(screen_size)
+    const.SCREEN = pygame.display.set_mode(screen_size)
     pygame.display.set_caption("VisualSort")
 
     # Draw initial rectangles
     for num in nums:
-        pygame.draw.rect(screen, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
+        pygame.draw.rect(const.SCREEN, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
     pygame.display.update()
     # screen.fill(0)
 
@@ -47,16 +44,16 @@ def setup():
 
 def update():
     for num in nums:
-        pygame.draw.rect(screen, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
+        pygame.draw.rect(const.SCREEN, WHITE, [nums.index(num), height, 2, 0 - 0 - num], 0)
     pygame.display.update()
-    screen.fill(0)
+    const.SCREEN.fill(0)
 
 
 def swap(i, j):
-    pygame.draw.rect(screen, BLACK, [nums.index(nums[i]), height, 2, 0 - height], 0)
-    pygame.draw.rect(screen, BLACK, [nums.index(nums[j]), height, 2, 0 - height], 0)
-    pygame.draw.rect(screen, WHITE, [nums.index(nums[i]), height, 2, 0 - nums[i]], 0)
-    pygame.draw.rect(screen, WHITE, [nums.index(nums[j]), height, 2, 0 - nums[j]], 0)
+    pygame.draw.rect(const.SCREEN, BLACK, [nums.index(nums[i]), height, 2, 0 - height], 0)
+    pygame.draw.rect(const.SCREEN, BLACK, [nums.index(nums[j]), height, 2, 0 - height], 0)
+    pygame.draw.rect(const.SCREEN, WHITE, [nums.index(nums[i]), height, 2, 0 - nums[i]], 0)
+    pygame.draw.rect(const.SCREEN, WHITE, [nums.index(nums[j]), height, 2, 0 - nums[j]], 0)
     pygame.display.update()
 
 
